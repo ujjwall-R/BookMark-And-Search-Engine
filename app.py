@@ -3,6 +3,9 @@ from search import search
 from storage import DBStorage
 import html
 
+languages = ["C++", "Python", "PHP", "Java", "C", "Ruby",
+             "R", "C#", "Dart", "Fortran", "Pascal", "Javascript"]
+
 app = Flask(__name__)
 
 styles = """
@@ -21,10 +24,33 @@ styles = """
 """
 
 search_template = styles + """
+    <head>
+    <title>BookMark</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />  
+    </head>
+    <body>
      <form action="/" method="post">
-      <input type="text" name="query">
+      <input type="text" name="query" id="query">
+    <script>
+            $( function() {
+            var availableTags = [
+                "Patna", "Kharagpur", "Delhi",
+            ];
+            $( "#query" ).autocomplete({
+            source: availableTags
+            });
+        } );
+    </script>
       <input type="submit" value="Search">
     </form>
+</body>
     """
 
 result_template = """

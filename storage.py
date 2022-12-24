@@ -28,6 +28,21 @@ class DBStorage():
         self.con.commit()
         cur.close()
 
+        # cur2 = self.con2.cursor()
+        # results_table = r"""
+        #     CREATE TABLE IF NOT EXISTS results (
+        #         id INTEGER PRIMARY KEY,
+        #         query TEXT,
+        #         created DATETIME,
+        #         relevance INTEGER,
+        #         UNIQUE(query, link)
+        #     );
+        #     """
+
+        # cur2.execute(results_table)
+        # self.con2.commit()
+        # cur2.close()
+
     def query_results(self, query):
         df = pd.read_sql(
             f"select * from results where query='{query}' order by rank asc", self.con)
