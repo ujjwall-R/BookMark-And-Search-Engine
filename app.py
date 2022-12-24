@@ -11,13 +11,13 @@ styles = """
         font-size: .8rem;
         color: green;
     }
-    
+
     .snippet {
         font-size: .9rem;
         color: gray;
         margin-bottom: 30px;
     }
-    
+
     .rel-button {
         cursor: pointer;
         color: blue;
@@ -44,14 +44,17 @@ search_template = styles + """
      <form action="/" method="post">
       <input type="text" name="query">
       <input type="submit" value="Search">
-    </form> 
+    </form>
     """
 
 result_template = """
-<p class="site">{rank}: {link} <span class="rel-button" onclick='relevant("{query}", "{link}");'>Relevant</span></p>
+<p class="site">{rank}: {link}</p>
 <a href="{link}">{title}</a>
 <p class="snippet">{snippet}</p>
 """
+
+cannot_search_empty_form_template = """<p>Please Enter query to search!!</p>"""
+no_results_found_template = """<p>No result found!!<p>"""
 
 
 def show_search_form():
@@ -61,16 +64,23 @@ def show_search_form():
 def run_search(query):
     results = search(query)
     rendered = search_template
-    results["snippet"] = results["snippet"].apply(lambda x: html.escape(x))
+    try:
+        results["snippet"] = results["snippet"].apply(lambda x: html.escape(x))
+    except KeyError as error:
+        return rendered + no_results_found_template
+
     for index, row in results.iterrows():
         rendered += result_template.format(**row)
     return rendered
 
 
-@app.route("/", methods=['GET', 'POST'])
+@ app.route("/", methods=['GET', 'POST'])
 def search_form():
     if request.method == 'POST':
         query = request.form["query"]
+        if len(query) == 0:
+            return search_template+cannot_search_empty_form_template
+        # TODO: Handle if query is empty string
         return run_search(query)
     else:
         return show_search_form()

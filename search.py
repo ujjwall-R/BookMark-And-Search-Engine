@@ -23,6 +23,8 @@ def search_api(query, pages=int(RESULT_COUNT/10)):
             continue
         results += data["items"]
     res_df = pd.DataFrame.from_dict(results)
+    if (len(results) == 0):
+        return res_df
     res_df["rank"] = list(range(1, res_df.shape[0] + 1))
     res_df = res_df[["link", "rank", "snippet", "title"]]
     return res_df
@@ -53,6 +55,8 @@ def search(query):
 
     print("No results in database.  Using the API.")
     results = search_api(query)
+    if (len(results) == 0):
+        return results
     html = scrape_page(results["link"])
     results["html"] = html
     results = results[results["html"].str.len() > 0].copy()
