@@ -33,7 +33,6 @@ def search_api(query, pages=int(RESULT_COUNT/10)):
 def scrape_page(links):
     html = []
     for link in links:
-        print(link)
         try:
             data = requests.get(url=link, timeout=5).text
             # print("DATA :", data)
@@ -48,9 +47,15 @@ def search(query):
     storage = DBStorage()
 
     stored_results = storage.query_results(query)
+    stored_recommendation = storage.query_recommendations(query)
     if stored_results.shape[0] > 0:
         print("Searched result already in database!")
         stored_results["created"] = pd.to_datetime(stored_results["created"])
+        if stored_recommendation.shape[0] == 0:
+            storage.insert_row_recommendations(query)
+            print('Query added to database for recommendation.')
+        else:
+            print('Query already in recommendation database.')
         return stored_results[columns]
 
     print("No results in database.  Using the API.")
@@ -66,3 +71,12 @@ def search(query):
     results.apply(lambda x: storage.insert_row(x), axis=1)
     print(f"Inserted {results.shape[0]} records.")
     return results
+
+
+def get_all_recommendations():
+    storage = DBStorage()
+    AllRecommendations = storage.all_recommendations()
+    recommendations = []
+    for index, row in AllRecommendations.iterrows():
+        recommendations.append(row['query'])
+    return recommendations
