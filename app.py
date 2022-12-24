@@ -17,27 +17,7 @@ styles = """
         color: gray;
         margin-bottom: 30px;
     }
-
-    .rel-button {
-        cursor: pointer;
-        color: blue;
-    }
 </style>
-<script>
-const relevant = function(query, link){
-    fetch("/relevant", {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-           "query": query,
-           "link": link
-          })
-        });
-}
-</script>
 """
 
 search_template = styles + """
