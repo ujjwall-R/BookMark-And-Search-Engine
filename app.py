@@ -80,7 +80,6 @@ def search_form():
         query = request.form["query"]
         if len(query) == 0:
             return search_template+cannot_search_empty_form_template
-        # TODO: Handle if query is empty string
         return run_search(query)
     else:
         return show_search_form()
