@@ -34,8 +34,6 @@ Congratulations! You already have a working search engine that works the same in
 
 ![Working search engine](https://github.com/ujjwall-R/BookMark-And-Search-Engine/blob/master/cse%20preparer/images/Screenshot%20from%202022-12-25%2010-17-09.png?raw=true)
 
-Save to Continue.
-
 To enhance user experience, we will use a flask application and sqlite database and use google cse api to fetch the search results.
 
 ## Setting up the flask application
@@ -70,6 +68,12 @@ Install requirements.
 
 ```bash
 pip install requirements.txt
+```
+
+'or'
+
+```bash
+pip install flask pandas requests beautifulsoup4
 ```
 
 Start the application.
