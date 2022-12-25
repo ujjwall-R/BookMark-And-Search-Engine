@@ -27,11 +27,13 @@ node app
 Now we will have all the links in seperated lines in links.txt file in the same directory. app.js extracts the links from json and add into .txt file so that we can use it directly into the cse service by google bot.
 
 Copy everything in the links.txt file and move to the control panel of your custom search engine and under sites to search add paste everything inside it.
-![adding of link snapshot](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![adding of link snapshot](https://github.com/ujjwall-R/BookMark-And-Search-Engine/blob/master/cse%20preparer/images/Screenshot%20from%202022-12-25%2010-25-23.png?raw=true)
 Save to Continue.
 
 Congratulations! You already have a working search engine that works the same intended way.
-![Working search engine](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+
+![Working search engine](https://github.com/ujjwall-R/BookMark-And-Search-Engine/blob/master/cse%20preparer/images/Screenshot%20from%202022-12-25%2010-17-09.png?raw=true)
+
 Save to Continue.
 
 To enhance user experience, we will use a flask application and sqlite database and use google cse api to fetch the search results.
