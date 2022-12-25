@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "search-index": "^3.3.0"
+  }
+}
