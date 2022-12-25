@@ -43,11 +43,14 @@ I have made a flask application that uses the google custom search engine api an
 ### Benefits of building the app and not using the google search bar
 
 - In case of any successful search, we store the query and result in the database. This makes the app fast in case of further similar search. Also, we can create a custom filtering and ranking using any machine learning techniques later on in our project.
-- I wanted to build a recommendation system. So in case of every successful search, the query is stored in the database in another table of recommendations. I am currently using [jquery auto recommendation](https://www.geeksforgeeks.org/autocomplete-input-suggestion-using-python-and-flask/) to implement the feature.
-  In short, the more the search engine is used, the better will be our recommendation system be. Its like training the model after searches.
-- I can play with the UI as per my wish. Its always more handy.
+- I built a recommendation system. So in case of every successful search, the query is stored in the database in another table of recommendations. I am currently using [jQuery Autocomplete](https://jqueryui.com/autocomplete/) to implement the feature.
+- In short, the more the search engine is used, the better will be our recommendation system be. It is analogous to training the model after successful search. This ensures that only correct and relevant recommendations are provided. No such recommendation is shown which results in no search result.
 
-## Usage
+- When there is a successful search, if there is no such query in the recommendations database, the query is stored for the betterment of recommendations for other users or future searches
+
+- Another benefit of using flask app is that I can play with the UI as per my wish. Its always more handy.
+
+# Usage
 
 Move to the root directory of the project
 Open settings.py
@@ -63,6 +66,15 @@ RESULT_COUNT = 10
 ```
 
 Get the search engine ID from the control panel of your custom search engine and add into SEARCH_ID. Also, get the API key and add into SEARCH_KEY.
+
+#### For evaluation [Temporary section]
+
+These are my key and api id. I will soon remove this from the repository. Its only for evaluation purpose(as Google API only gives first free 10000 searches per day).
+
+```python
+SEARCH_KEY = "AIzaSyD6_svwnad4NrzQ7DBTyGiUxzcy_1VJ3Bc"
+SEARCH_ID = "94ed76e4186f6414f"
+```
 
 Install requirements.
 
@@ -82,13 +94,17 @@ Start the application.
 flask --debug run --port 5001
 ```
 
-Move to the link of the deployed port and you can use the application.
+Open the link of the deployed port and you can use the application. In this case it is
+
+```website
+http://127.0.0.1:5001/
+```
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 
-## License
+### License
 
 [MIT](https://choosealicense.com/licenses/mit/)
