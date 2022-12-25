@@ -69,7 +69,7 @@ Get the search engine ID from the control panel of your custom search engine and
 
 #### For evaluation [Temporary section]
 
-These are my key and api id. I will soon remove this from the repository. Its only for evaluation purpose(as Google API only gives first free 10000 searches per day).
+You need not to create your own custom search engine (preparation steps) if you use my key and id. These are my key and api id. I will soon remove this from the repository. Its only for evaluation purpose(as Google API only gives first free 10000 searches per day).
 
 ```python
 SEARCH_KEY = "AIzaSyD6_svwnad4NrzQ7DBTyGiUxzcy_1VJ3Bc"
